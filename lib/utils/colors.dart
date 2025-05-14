@@ -8,4 +8,5 @@ class Colours {
   final Color progressBarProgressColor = Color.fromRGBO(6, 240, 216, 1);
   final Color subTextColor = const Color.fromARGB(255, 92, 92, 92);
   final Color borderColor = Colors.grey;
+  final Color textFieldColor = const Color.fromARGB(255, 232, 227, 227);
 }
