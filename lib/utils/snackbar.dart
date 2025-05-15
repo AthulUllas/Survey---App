@@ -1,41 +1,41 @@
+import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:surveyapp/utils/colors.dart';
 import 'package:surveyapp/utils/dimensions.dart';
 
-void snackBar(String message, BuildContext context) {
+Future<void> snackBar(String message, BuildContext context) async {
   final colors = Colours();
   final sides = Dimensions();
-  final snackBar = SnackBar(
-    content: Padding(
-      padding: EdgeInsets.only(
-        left: sides.snackBarLeftSide,
-        top: sides.snackBarTopSide,
-      ),
-      child: Text(
-        message,
-        style: GoogleFonts.manjari(
-          textStyle: TextStyle(color: colors.primaryTextColor, fontSize: 16),
-        ),
-      ),
-    ),
-    behavior: SnackBarBehavior.floating,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+  showFlash(
+    context: context,
     duration: Duration(seconds: 1),
-    backgroundColor: colors.secondaryColor,
-    showCloseIcon: true,
-    closeIconColor: colors.primaryTextColor,
-    margin: EdgeInsets.only(
-      left: sides.leftSide,
-      right: sides.rightSide,
-      bottom: MediaQuery.of(context).size.height - 120,
-    ),
+    builder: (context, controller) {
+      return FlashBar(
+        controller: controller,
+        content: Center(
+          child: Padding(
+            padding: EdgeInsets.only(top: sides.snackBarTopSide),
+            child: Text(message),
+          ),
+        ),
+        contentTextStyle: GoogleFonts.manjari(
+          textStyle: TextStyle(
+            fontSize: 18,
+            color: colors.progressBarProgressColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        position: FlashPosition.top,
+        behavior: FlashBehavior.floating,
+        margin: EdgeInsets.only(
+          left: sides.leftSide,
+          right: sides.rightSide,
+          top: sides.topSide,
+        ),
+        backgroundColor: colors.primaryTextColor,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      );
+    },
   );
-  final errorBar = ScaffoldMessenger.of(context);
-  errorBar.showSnackBar(snackBar);
-}
-
-void hideSnackBar(BuildContext context) {
-  final errorBar = ScaffoldMessenger.of(context);
-  errorBar.hideCurrentSnackBar();
 }

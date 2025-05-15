@@ -76,7 +76,7 @@ class SignupPage extends HookWidget {
                 ? TextButton(
                   onPressed: () async {
                     showOtpButton.value = false;
-                    await Future.delayed(Duration(seconds: 3));
+                    await Future.delayed(Duration(milliseconds: 1500));
                     showOtpButton.value = true;
                     snackBar("Otp Sent", context);
                   },
