@@ -65,6 +65,13 @@ class SignupPage extends HookWidget {
               decoration: BoxDecoration(
                 color: colors.secondaryColor,
                 borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: colors.borderColor,
+                    blurRadius: 3,
+                    spreadRadius: 0.2,
+                  ),
+                ],
               ),
               height: 50,
               margin: EdgeInsets.only(
