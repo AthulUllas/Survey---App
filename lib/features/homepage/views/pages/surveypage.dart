@@ -16,9 +16,10 @@ class Surveypage extends HookConsumerWidget {
     final colors = Colours();
     final myList = [
       "The survey question will appear here",
-      "This is your question",
+      "This is your question to answer",
       "The survey question appears here",
       "The question shows here is dynamic",
+      "Answer this question from the options",
     ];
     final options = [
       "Option 1",
@@ -116,14 +117,24 @@ class Surveypage extends HookConsumerWidget {
                           left: sides.leftSide,
                           right: sides.rightSide,
                         ),
-                        child: Text(
-                          myList[currentQuestion.value - 1],
-                          softWrap: true,
-                          style: GoogleFonts.manjari(
-                            textStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 36,
-                              color: colors.primaryTextColor,
+                        child: AnimatedSwitcher(
+                          duration: Duration(milliseconds: 300),
+                          transitionBuilder: (child, animation) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            );
+                          },
+                          child: Text(
+                            myList[currentQuestion.value - 1],
+                            key: ValueKey<int>(currentQuestion.value),
+                            softWrap: true,
+                            style: GoogleFonts.manjari(
+                              textStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 36,
+                                color: colors.primaryTextColor,
+                              ),
                             ),
                           ),
                         ),
