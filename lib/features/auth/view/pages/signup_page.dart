@@ -44,6 +44,34 @@ class SignupPage extends HookWidget {
               trailing: AntDesign.phone_outline,
               textFieldHelper: "Phone",
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    height: 45,
+                    width: 45,
+                    child: Center(child: Brand(Brands.google)),
+                  ),
+                ),
+                SizedBox(width: 20),
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    height: 45,
+                    width: 45,
+                    child: Center(child: Brand(Brands.apple_logo)),
+                  ),
+                ),
+              ],
+            ),
             (showOtpButton.value)
                 ? TextButton(
                   onPressed: () async {

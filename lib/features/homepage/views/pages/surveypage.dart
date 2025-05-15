@@ -20,6 +20,7 @@ class Surveypage extends HookConsumerWidget {
       "The survey question appears here",
       "The question shows here is dynamic",
       "Answer this question from the options",
+      "Select your answer from below",
     ];
     final options = [
       "Option 1",
@@ -47,7 +48,7 @@ class Surveypage extends HookConsumerWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        GestureDetector(
+                        InkWell(
                           onTap: () {
                             if (currentQuestion.value > 1 &&
                                 currentQuestion.value <= myList.length) {
