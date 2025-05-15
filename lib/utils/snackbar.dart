@@ -35,6 +35,7 @@ Future<void> snackBar(String message, BuildContext context) async {
         ),
         backgroundColor: colors.primaryTextColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        forwardAnimationCurve: Curves.easeInOutCubicEmphasized,
       );
     },
   );
