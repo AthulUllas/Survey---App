@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 import 'package:surveyapp/utils/colors.dart';
 import 'package:surveyapp/utils/dimensions.dart';
 
-class Surveypage extends HookWidget {
+class Surveypage extends HookConsumerWidget {
   const Surveypage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final sides = Dimensions();
     final colors = Colours();
     final myList = [
@@ -116,7 +117,7 @@ class Surveypage extends HookWidget {
                           right: sides.rightSide,
                         ),
                         child: Text(
-                          "The survey question will appear here",
+                          myList[currentQuestion.value - 1],
                           softWrap: true,
                           style: GoogleFonts.manjari(
                             textStyle: TextStyle(
@@ -241,6 +242,13 @@ class Surveypage extends HookWidget {
                 decoration: BoxDecoration(
                   color: colors.secondaryColor,
                   borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: colors.borderColor,
+                      blurRadius: 3,
+                      spreadRadius: 0.2,
+                    ),
+                  ],
                 ),
                 child: Center(
                   child: Text(

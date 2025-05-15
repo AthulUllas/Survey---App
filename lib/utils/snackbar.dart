@@ -28,7 +28,7 @@ void snackBar(String message, BuildContext context) {
     margin: EdgeInsets.only(
       left: sides.leftSide,
       right: sides.rightSide,
-      bottom: MediaQuery.of(context).size.height - 100,
+      bottom: MediaQuery.of(context).size.height - 120,
     ),
   );
   final errorBar = ScaffoldMessenger.of(context);

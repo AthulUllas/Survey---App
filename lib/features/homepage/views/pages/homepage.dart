@@ -87,6 +87,13 @@ class Homepage extends StatelessWidget {
               decoration: BoxDecoration(
                 color: colors.secondaryColor,
                 borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 3,
+                    spreadRadius: 0.2,
+                    color: colors.borderColor,
+                  ),
+                ],
               ),
               child: Center(
                 child: Text(
