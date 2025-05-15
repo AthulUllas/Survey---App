@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:surveyapp/features/homepage/views/pages/homepage.dart';
+import 'package:surveyapp/features/auth/view/pages/signup_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Survey App',
-      home: Homepage(),
+      home: SignupPage(),
     );
   }
 }

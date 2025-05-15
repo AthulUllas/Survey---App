@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:surveyapp/features/auth/view/widgets/textfield.dart';
 import 'package:surveyapp/utils/colors.dart';
 import 'package:surveyapp/utils/dimensions.dart';
 
-class SignupPage extends StatelessWidget {
+class SignupPage extends HookWidget {
   const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final showOtpButton = useState<bool>(true);
     final colors = Colours();
     final sides = Dimensions();
     return Scaffold(
@@ -39,10 +42,15 @@ class SignupPage extends StatelessWidget {
               trailing: AntDesign.phone_outline,
               textFieldHelper: "Phone",
             ),
+            // (showOtpButton.value)
+            // ?
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                showOtpButton.value = false;
+              },
               child: Text("Get Otp", style: TextStyle(fontSize: 16)),
             ),
+            // :
             SignUpTextfield(
               trailing: AntDesign.number_outline,
               textFieldHelper: "Enter Otp",
@@ -57,7 +65,9 @@ class SignupPage extends StatelessWidget {
                 left: sides.leftSide,
                 right: sides.rightSide,
               ),
-              child: Center(child: Text("Next")),
+              child: Center(
+                child: Text("Next", style: TextStyle(fontSize: 16)),
+              ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.2),
           ],
