@@ -10,10 +10,8 @@ class OtpVerifyService {
     final url = Uri.parse("${auth.baseUrl}?mobile=$phone&otp=$otp");
     final response = await http.post(url);
     if (response.statusCode == 200) {
-      hideSnackBar(context);
       snackBar(response.body, context);
     } else {
-      hideSnackBar(context);
       snackBar(response.body, context);
     }
   }

@@ -20,7 +20,6 @@ class Helpers {
       await launchUrl(url, mode: LaunchMode.externalApplication);
       isMessageSent = true;
     } else {
-      hideSnackBar(context);
       snackBar(message, context);
       isMessageSent = false;
     }

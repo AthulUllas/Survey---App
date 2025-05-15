@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
+import 'package:surveyapp/utils/alert_box.dart';
 import 'package:surveyapp/utils/colors.dart';
 import 'package:surveyapp/utils/dimensions.dart';
 
@@ -84,7 +85,22 @@ class Surveypage extends HookConsumerWidget {
                         ),
                         Padding(
                           padding: EdgeInsets.only(right: sides.rightSide),
-                          child: Icon(AntDesign.close_outline, size: 18),
+                          child: IconButton(
+                            icon: Icon(AntDesign.close_outline, size: 18),
+                            onPressed: () {
+                              alertBox(
+                                context,
+                                "Confirm",
+                                "Cancel",
+                                () {
+                                  Navigator.pop(context);
+                                },
+                                () {
+                                  Navigator.pop(context);
+                                },
+                              );
+                            },
+                          ),
                         ),
                       ],
                     ),
