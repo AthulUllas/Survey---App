@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:loading_indicator/loading_indicator.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:surveyapp/features/auth/view/widgets/textfield.dart';
 import 'package:surveyapp/utils/colors.dart';
 import 'package:surveyapp/utils/dimensions.dart';
+import 'package:surveyapp/utils/snackbar.dart';
 
 class SignupPage extends HookWidget {
   const SignupPage({super.key});
@@ -21,7 +22,7 @@ class SignupPage extends HookWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.1),
             Text(
               "Welcome!",
               style: GoogleFonts.balooTammudu2(
@@ -42,15 +43,20 @@ class SignupPage extends HookWidget {
               trailing: AntDesign.phone_outline,
               textFieldHelper: "Phone",
             ),
-            // (showOtpButton.value)
-            // ?
-            TextButton(
-              onPressed: () {
-                showOtpButton.value = false;
-              },
-              child: Text("Get Otp", style: TextStyle(fontSize: 16)),
-            ),
-            // :
+            (showOtpButton.value)
+                ? TextButton(
+                  onPressed: () async {
+                    showOtpButton.value = false;
+                    await Future.delayed(Duration(seconds: 3));
+                    showOtpButton.value = true;
+                    snackBar("Otp Sent", context);
+                  },
+                  child: Text("Get Otp", style: TextStyle(fontSize: 16)),
+                )
+                : LoadingAnimationWidget.newtonCradle(
+                  color: colors.secondaryColor,
+                  size: 70,
+                ),
             SignUpTextfield(
               trailing: AntDesign.number_outline,
               textFieldHelper: "Enter Otp",
@@ -69,7 +75,7 @@ class SignupPage extends HookWidget {
                 child: Text("Next", style: TextStyle(fontSize: 16)),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.1),
           ],
         ),
       ),
