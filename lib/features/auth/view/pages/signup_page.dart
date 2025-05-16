@@ -61,14 +61,14 @@ class SignupPage extends HookWidget {
                 children: [
                   CountryCodePicker(
                     onInit: (value) {
-                      phoneController.text = "+91";
+                      phoneController.text = "+1 ";
                     },
                     onChanged: (value) {
                       phoneController.clear();
                       phoneController.text =
                           value.dialCode! + phoneController.text;
                     },
-                    initialSelection: "IN",
+                    initialSelection: "US",
                     favorite: ['+91', 'IN'],
                     closeIcon: Icon(AntDesign.close_outline),
                     showOnlyCountryWhenClosed: true,
@@ -147,8 +147,10 @@ class SignupPage extends HookWidget {
                 if (nameController.text.isNotEmpty &&
                     phoneController.text.isNotEmpty &&
                     otpController.text.isNotEmpty) {
-                  if (phoneController.text.length <= 5) {
+                  if (phoneController.text.length < 13) {
                     snackBar("Phone field is wrong", context);
+                  } else if (otpController.text.length < 4) {
+                    snackBar("Otp is wrong", context);
                   } else {
                     Navigator.push(
                       context,
