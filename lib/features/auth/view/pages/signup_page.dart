@@ -17,6 +17,9 @@ class SignupPage extends HookWidget {
     final showOtpButton = useState<bool>(true);
     final colors = Colours();
     final sides = Dimensions();
+    final nameController = useTextEditingController();
+    final phoneController = useTextEditingController();
+    final otpController = useTextEditingController();
     return Scaffold(
       backgroundColor: colors.primaryColor,
       body: Center(
@@ -37,17 +40,19 @@ class SignupPage extends HookWidget {
               ),
             ),
             SignUpTextfield(
+              controller: nameController,
               trailing: AntDesign.user_outline,
               textFieldHelper: "UserName",
             ),
             SignUpTextfield(
+              controller: phoneController,
               trailing: AntDesign.phone_outline,
               textFieldHelper: "Phone",
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                InkWell(
+                GestureDetector(
                   onTap: () {},
                   child: Container(
                     decoration: BoxDecoration(
@@ -59,7 +64,7 @@ class SignupPage extends HookWidget {
                   ),
                 ),
                 SizedBox(width: 20),
-                InkWell(
+                GestureDetector(
                   onTap: () {},
                   child: Container(
                     decoration: BoxDecoration(
@@ -87,6 +92,7 @@ class SignupPage extends HookWidget {
                   size: 30,
                 ),
             SignUpTextfield(
+              controller: otpController,
               trailing: AntDesign.number_outline,
               textFieldHelper: "Enter Otp",
             ),
