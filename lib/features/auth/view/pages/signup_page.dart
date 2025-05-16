@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -44,10 +45,43 @@ class SignupPage extends HookWidget {
               trailing: AntDesign.user_outline,
               textFieldHelper: "UserName",
             ),
-            SignUpTextfield(
-              controller: phoneController,
-              trailing: AntDesign.phone_outline,
-              textFieldHelper: "Phone",
+            Container(
+              decoration: BoxDecoration(
+                color: colors.textFieldColor,
+                borderRadius: BorderRadius.circular(5),
+              ),
+              height: 60,
+              margin: EdgeInsets.only(
+                left: sides.leftSide,
+                right: sides.rightSide,
+              ),
+              child: Row(
+                children: [
+                  // Padding(
+                  //   padding: EdgeInsets.only(left: sides.leftSide),
+                  //   child: Icon(AntDesign.phone_outline),
+                  // ),
+                  CountryCodePicker(
+                    onChanged: (value) {},
+                    initialSelection: "IN",
+                    favorite: ['+91', 'IN'],
+                    closeIcon: Icon(AntDesign.close_outline),
+                  ),
+                  Expanded(
+                    child: TextField(
+                      controller: phoneController,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Phone",
+                        contentPadding: EdgeInsets.only(
+                          left: sides.leftSide,
+                          top: 2,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
