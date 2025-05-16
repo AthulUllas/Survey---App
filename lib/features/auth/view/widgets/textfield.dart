@@ -8,11 +8,13 @@ class SignUpTextfield extends StatelessWidget {
     required this.trailing,
     required this.textFieldHelper,
     required this.controller,
+    required this.keyboardType,
   });
 
   final IconData trailing;
   final String textFieldHelper;
   final TextEditingController controller;
+  final TextInputType keyboardType;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class SignUpTextfield extends StatelessWidget {
           Expanded(
             child: TextField(
               controller: controller,
+              keyboardType: keyboardType,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: textFieldHelper,

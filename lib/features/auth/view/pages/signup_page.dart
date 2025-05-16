@@ -1,5 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -44,6 +45,7 @@ class SignupPage extends HookWidget {
               controller: nameController,
               trailing: AntDesign.user_outline,
               textFieldHelper: "UserName",
+              keyboardType: TextInputType.name,
             ),
             Container(
               decoration: BoxDecoration(
@@ -58,6 +60,9 @@ class SignupPage extends HookWidget {
               child: Row(
                 children: [
                   CountryCodePicker(
+                    onInit: (value) {
+                      phoneController.text = "+91";
+                    },
                     onChanged: (value) {
                       phoneController.clear();
                       phoneController.text =
@@ -78,6 +83,7 @@ class SignupPage extends HookWidget {
                   Expanded(
                     child: TextField(
                       controller: phoneController,
+                      keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "Phone",
@@ -134,13 +140,27 @@ class SignupPage extends HookWidget {
               controller: otpController,
               trailing: AntDesign.number_outline,
               textFieldHelper: "Enter Otp",
+              keyboardType: TextInputType.phone,
             ),
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (route) => Homepage()),
-                );
+                if (nameController.text.isNotEmpty &&
+                    phoneController.text.isNotEmpty &&
+                    otpController.text.isNotEmpty) {
+                  if (phoneController.text.length <= 5) {
+                    snackBar("Phone field is wrong", context);
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (route) => Homepage()),
+                    );
+                    nameController.clear();
+                    phoneController.clear();
+                    otpController.clear();
+                  }
+                } else {
+                  snackBar("Empty column", context);
+                }
               },
               child: Container(
                 decoration: BoxDecoration(
