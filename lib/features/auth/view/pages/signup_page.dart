@@ -57,15 +57,23 @@ class SignupPage extends HookWidget {
               ),
               child: Row(
                 children: [
-                  // Padding(
-                  //   padding: EdgeInsets.only(left: sides.leftSide),
-                  //   child: Icon(AntDesign.phone_outline),
-                  // ),
                   CountryCodePicker(
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      phoneController.clear();
+                      phoneController.text =
+                          value.dialCode! + phoneController.text;
+                    },
                     initialSelection: "IN",
                     favorite: ['+91', 'IN'],
                     closeIcon: Icon(AntDesign.close_outline),
+                    showOnlyCountryWhenClosed: true,
+                    flagWidth: 25,
+                    padding: EdgeInsets.only(left: 6),
+                  ),
+                  Container(
+                    height: 20,
+                    width: 1,
+                    decoration: BoxDecoration(color: colors.borderColor),
                   ),
                   Expanded(
                     child: TextField(
@@ -73,10 +81,7 @@ class SignupPage extends HookWidget {
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "Phone",
-                        contentPadding: EdgeInsets.only(
-                          left: sides.leftSide,
-                          top: 2,
-                        ),
+                        contentPadding: EdgeInsets.only(left: 10),
                       ),
                     ),
                   ),
