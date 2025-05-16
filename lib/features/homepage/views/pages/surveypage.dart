@@ -90,8 +90,7 @@ class Surveypage extends HookConsumerWidget {
                             onPressed: () {
                               alertBox(
                                 context,
-                                "Confirm",
-                                "Cancel",
+                                "Are you Sure you want to close the survey ?",
                                 () {
                                   Navigator.pop(context);
                                 },
