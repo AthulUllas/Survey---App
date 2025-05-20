@@ -47,6 +47,7 @@ dependencies:
   flash: ^3.1.1
   quickalert: ^1.1.0
   country_code_picker: ^3.3.0
+  flutter_secure_storage: ^9.2.4
 
 dev_dependencies:
   flutter_test:

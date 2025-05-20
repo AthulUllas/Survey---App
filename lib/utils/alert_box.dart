@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickalert/quickalert.dart';
-import 'package:surveyapp/utils/colors.dart';
 
 Future<void> alertBox(
   BuildContext context,
@@ -9,7 +8,6 @@ Future<void> alertBox(
   void Function() confirmFun,
   void Function() cancelFun,
 ) async {
-  final colors = Colours();
   await QuickAlert.show(
     context: context,
     type: QuickAlertType.custom,
